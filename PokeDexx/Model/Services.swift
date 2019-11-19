@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import ObjectMapper
 
 class Services {
     
@@ -44,26 +45,9 @@ class Services {
             if let json = response.result.value as? [String: Any] {
                 print("JSON: \(json)")
                 
-                if let sprites = json["sprites"] as? [String: Any] {
-                    var urlImage: String = sprites["front_default"] as?
-                        String ?? ""
-                    self.sprite = urlImage
-                    
-                    print("hola")
-                }
-                if let types = json["types"] as? [[String: Any]] {
-                    for typesDict in types {
-                        var type = typesDict["type"] as? [String:String]
-                        print("hola poke")
-                        let nameType = type?["name"] as? String
-                        print("consegui type")
-                        self.types.append(nameType ?? "")
-                    }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tengo tipos e imagenes"), object: nil)
-                    
-                    print("ko")
-                }
-                print("ko")
+                let pokemon = ObjectMapper.Mapper<Pokemon>().map(JSON: json)
+                
+                print("XELQLO")
                 
             }
         }
