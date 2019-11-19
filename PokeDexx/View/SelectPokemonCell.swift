@@ -8,11 +8,10 @@
 
 import UIKit
 
-class SelectPokemonCell: UICollectionViewCell {
+final class SelectPokemonCell: UICollectionViewCell {
 
-    @IBOutlet weak var imagePokemonCell: UIImageView!
-    @IBOutlet weak var pokemonLblCell: UILabel!
-    
+    @IBOutlet private weak var imagePokemonCell: UIImageView!
+    @IBOutlet private weak var pokemonLblCell: UILabel!
     
     func configName(pokemon : Pokemon) {
         let namePokemon = pokemon.name

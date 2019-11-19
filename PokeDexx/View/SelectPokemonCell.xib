@@ -19,13 +19,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="454" height="78"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pokemonfront" translatesAutoresizingMaskIntoConstraints="NO" id="0i1-dR-YO3">
-                        <rect key="frame" x="5" y="3" width="86" height="55"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pokemonfront" translatesAutoresizingMaskIntoConstraints="NO" id="0i1-dR-YO3">
+                        <rect key="frame" x="5" y="14" width="100" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="MkF-Yg-iV8"/>
+                            <constraint firstAttribute="width" constant="100" id="nVn-Qs-TL8"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCv-Mt-tlg">
-                        <rect key="frame" x="112" y="25" width="83" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCv-Mt-tlg">
+                        <rect key="frame" x="112" y="28.5" width="335" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -37,6 +39,13 @@
                     </view>
                 </subviews>
             </view>
+            <constraints>
+                <constraint firstItem="oCv-Mt-tlg" firstAttribute="leading" secondItem="0i1-dR-YO3" secondAttribute="trailing" constant="7" id="2Sa-HD-GhH"/>
+                <constraint firstItem="0i1-dR-YO3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="5yP-Jy-pOS"/>
+                <constraint firstItem="oCv-Mt-tlg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="6Wv-SX-y6E"/>
+                <constraint firstAttribute="trailing" secondItem="oCv-Mt-tlg" secondAttribute="trailing" constant="7" id="Bj6-EE-3Pc"/>
+                <constraint firstItem="0i1-dR-YO3" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="uRq-6E-wV0"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="454" height="78"/>
             <connections>

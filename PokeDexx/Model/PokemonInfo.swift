@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 class PokemonInfo {
+    
     var speed:Int = 0
     var specialDefense: Int = 0
     var specialAttack: Int = 0
@@ -17,16 +18,12 @@ class PokemonInfo {
     var attack: Int = 0
     var hp:Int = 0
     
-    
     init() {
         
     }
-    
     required init?(map: Map) {
-        
     }
     
-    // Mappable
     func mapping(map: Map) {
         speed <- map["speed"]
         specialDefense <- map["special-defense"]
@@ -34,7 +31,6 @@ class PokemonInfo {
         defense <- map["defense"]
         attack <- map["attack"]
         hp <- map["map"]
-        
     }
 }
 

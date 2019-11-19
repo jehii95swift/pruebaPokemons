@@ -7,26 +7,20 @@
 //
 
 import Foundation
+
 class Controller {
     
     var services = Services()
     
-    func getPokemones() -> [Pokemon] {
-        let consigioPokemon = services.pokemones
-        return consigioPokemon
+    func getPokemons() -> [Pokemon] {
+        return services.pokemons
     }
-    func getTypes() -> [String] {
-        let conseguirTipos = services.types
-        return conseguirTipos
+    
+    func requestPokemons() {
+        services.requestPokemons()
     }
-    func getNames() -> String {
-        let conseguirNombres = services.sprite
-        return conseguirNombres
-    }
-    func requestPokemones() {
-        services.requestPokemones()
-    }
-    func requestInfo(name: String) {
-        services.requestInfo(name: name)
+    
+    func requestInfo(name: String, completion: @escaping (Pokemon) -> ()) {
+        services.requestInfo(name: name, completion: completion)
     }
 }

@@ -12,11 +12,9 @@ import ObjectMapper
 
 class Services {
     
-    var pokemones: [Pokemon] = []
-    var types: [String] = []
-    var sprite: String = ""
+    var pokemons: [Pokemon] = []
     
-    func requestPokemones() {
+    func requestPokemons() {
         Alamofire.request("https://pokeapi.co/api/v2/pokemon").responseJSON { response in
             
             if let json = response.result.value as? [String: Any] {
@@ -28,27 +26,26 @@ class Services {
                         let name = pokemonDict["name"] ?? ""
                         let url = pokemonDict["url"] ?? ""
                         let pokemon = Pokemon(name:name, url:url)
-                        self.pokemones.append(pokemon)
+                        self.pokemons.append(pokemon)
                     }
                     
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tengolospokemones"), object: nil)
                 }
-                print("ko")
-                
             }
         }
     }
-    func requestInfo(name: String) {
+    
+    func requestInfo(name: String, completion: @escaping (Pokemon) -> ()) {
         
         Alamofire.request("https://pokeapi.co/api/v2/pokemon/\(name)").responseJSON { response in
             
             if let json = response.result.value as? [String: Any] {
                 print("JSON: \(json)")
                 
-                let pokemon = ObjectMapper.Mapper<Pokemon>().map(JSON: json)
-                
-                print("XELQLO")
-                
+                guard let pokemon = ObjectMapper.Mapper<Pokemon>().map(JSON: json) else {
+                    return
+                }
+                completion(pokemon)
             }
         }
     }

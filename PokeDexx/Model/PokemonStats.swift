@@ -24,6 +24,4 @@ class PokemonStats: Mappable {
         statName = stat?["name"] ?? ""
         
     }
-    
-    
 }

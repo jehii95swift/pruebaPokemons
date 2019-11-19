@@ -8,19 +8,35 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
-    @IBOutlet weak var collectionView: UICollectionView!
-    var controller = Controller()
-    var pokemones: [Pokemon] = []
+    @IBOutlet private weak var collectionView: UICollectionView!
+    private let controller = Controller()
+    private var pokemones: [Pokemon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        controller.requestPokemones()
-        NotificationCenter.default.addObserver(self, selector: #selector(pintarPokemones), name: NSNotification.Name(rawValue: "tengolospokemones"), object: nil)
-        registrar()
+        controller.requestPokemons()
+        registerNotificationObserver()
+        registerCell()
+        configGradient()
+    }
+    
+    @objc func drawPokemons() {
+        self.pokemones = controller.getPokemons()
+        self.collectionView.reloadData()
+    }
+    
+}
+
+private extension ViewController {
+    
+    func registerNotificationObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(drawPokemons), name: NSNotification.Name(rawValue: "tengolospokemones"), object: nil)    }
+    
+    func configGradient() {
         let gradient: CAGradientLayer = CAGradientLayer()
         
         gradient.colors = [UIColor.blue.cgColor, UIColor.red.cgColor]
@@ -28,19 +44,13 @@ class ViewController: UIViewController {
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
-        
         self.view.layer.insertSublayer(gradient, at: 0)
     }
     
-    func registrar () {
+    func registerCell () {
         collectionView.register(UINib(nibName: "SelectPokemonCell", bundle: nil), forCellWithReuseIdentifier: "SelectPokemonCell")
-    }
-    @objc func pintarPokemones() {
-        self.pokemones = controller.getPokemones()
-        self.collectionView.reloadData()
-    }
-    
-}
+    }}
+
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -62,7 +72,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let vc = DetailPokemon()
         let pokemon = pokemones[indexPath.row]
         vc.loadViewIfNeeded()
-        vc.configurarPokemon(pokemon: pokemon)
+        vc.configurePokemon(pokemon: pokemon)
         vc.requestInfo(name: pokemon.name)
         self.navigationController!.pushViewController(vc, animated: true)
     }
