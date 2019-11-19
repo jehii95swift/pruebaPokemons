@@ -10,6 +10,8 @@ import UIKit
 
 class DetailPokemon: UIViewController {
     
+    @IBOutlet weak var CollectionView: UICollectionView!
+    
     var services = Services()
     var controller = Controller()
     var types: [String] = []
@@ -34,6 +36,7 @@ class DetailPokemon: UIViewController {
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
         self.view.layer.insertSublayer(gradient, at: 0)
+        
         
     }
     func configurarPokemon(pokemon: Pokemon) {
