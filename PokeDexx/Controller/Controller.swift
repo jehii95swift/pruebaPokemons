@@ -7,3 +7,26 @@
 //
 
 import Foundation
+class Controller {
+    
+    var services = Services()
+    
+    func getPokemones() -> [Pokemon] {
+        let consigioPokemon = services.pokemones
+        return consigioPokemon
+    }
+    func getTypes() -> [String] {
+        let conseguirTipos = services.types
+        return conseguirTipos
+    }
+    func getNames() -> String {
+        let conseguirNombres = services.sprite
+        return conseguirNombres
+    }
+    func requestPokemones() {
+        services.requestPokemones()
+    }
+    func requestInfo(name: String) {
+        services.requestInfo(name: name)
+    }
+}
